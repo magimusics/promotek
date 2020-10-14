@@ -19,19 +19,24 @@ PDBLoader.prototype = Object.assign( Object.create( Loader.prototype ), {
 
         var scope = this;
         var text = `COMPND  bucky.pdb
-HETATM    1  C                 -3.4306  0.3484  0.3630
-HETATM    2  C                 -3.1790  1.1810 -0.7334
-HETATM    3  C                 -2.9160  0.3690 -1.8427
-HETATM    4  C                 -3.0048 -0.9660 -1.4314
-HETATM    5  C                 -3.3229 -0.9791 -0.0682
-HETATM    6  C                 -3.2001 	0.0093 -0.7425
-CONECT    1    6
-CONECT    2    6
-CONECT    3    6
-CONECT    4    6
-CONECT    5    6
-CONECT    6
+HETATM    1  C 38.8222 31.3221 0
+HETATM    2  C 29.4112 0 0
+CONECT    1    2
 END`
+//         var text = `COMPND  bucky.pdb
+// HETATM    1  C                 -3.4306  0.3484  0.3630
+// HETATM    2  C                 -3.1790  1.1810 -0.7334
+// HETATM    3  C                 -2.9160  0.3690 -1.8427
+// HETATM    4  C                 -3.0048 -0.9660 -1.4314
+// HETATM    5  C                 -3.3229 -0.9791 -0.0682
+// HETATM    6  C                 -3.2001 	0.0093 -0.7425
+// CONECT    1    6
+// CONECT    2    6
+// CONECT    3    6
+// CONECT    4    6
+// CONECT    5    6
+// CONECT    6
+// END`
         onLoad( scope.parse( text ) );
 
     },

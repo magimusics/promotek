@@ -17,8 +17,6 @@ var TrackballControls = function ( object, domElement ) {
     this.object = object;
     this.domElement = domElement;
 
-    // API
-
     this.enabled = true;
 
     this.screen = { left: 0, top: 0, width: 0, height: 0 };

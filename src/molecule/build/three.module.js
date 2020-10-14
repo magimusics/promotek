@@ -22199,7 +22199,7 @@ function WebXRManager( renderer, gl ) {
         // TODO: Better way to apply this offset?
         cameraL.matrixWorld.decompose( camera.position, camera.quaternion, camera.scale );
         camera.translateX( xOffset );
-        camera.translateZ( zOffset );
+        // camera.translateZ( zOffset );
         camera.matrixWorld.compose( camera.position, camera.quaternion, camera.scale );
         camera.matrixWorldInverse.getInverse( camera.matrixWorld );
 

@@ -117,31 +117,6 @@ var CSS3DRenderer = function () {
 
     }
 
-    function getCameraCSSMatrix( matrix ) {
-
-        var elements = matrix.elements;
-
-        return 'matrix3d(' +
-            epsilon( elements[ 0 ] ) + ',' +
-            epsilon( - elements[ 1 ] ) + ',' +
-            epsilon( elements[ 2 ] ) + ',' +
-            epsilon( elements[ 3 ] ) + ',' +
-            epsilon( elements[ 4 ] ) + ',' +
-            epsilon( - elements[ 5 ] ) + ',' +
-            epsilon( elements[ 6 ] ) + ',' +
-            epsilon( elements[ 7 ] ) + ',' +
-            epsilon( elements[ 8 ] ) + ',' +
-            epsilon( - elements[ 9 ] ) + ',' +
-            epsilon( elements[ 10 ] ) + ',' +
-            epsilon( elements[ 11 ] ) + ',' +
-            epsilon( elements[ 12 ] ) + ',' +
-            epsilon( - elements[ 13 ] ) + ',' +
-            epsilon( elements[ 14 ] ) + ',' +
-            epsilon( elements[ 15 ] ) +
-            ')';
-
-    }
-
     function getObjectCSSMatrix( matrix, cameraCSSMatrix ) {
 
         var elements = matrix.elements;
@@ -186,8 +161,6 @@ var CSS3DRenderer = function () {
             var style;
 
             if ( object instanceof CSS3DSprite ) {
-
-                // http://swiftcoder.wordpress.com/2008/11/25/constructing-a-billboard-matrix/
 
                 matrix.copy( camera.matrixWorldInverse );
                 matrix.transpose();
@@ -241,7 +214,7 @@ var CSS3DRenderer = function () {
 
         for ( var i = 0, l = object.children.length; i < l; i ++ ) {
 
-            renderObject( object.children[ i ], scene, camera, cameraCSSMatrix );
+            renderObject( object.children[ i ], scene, camera, "translateZ(100px)" );
 
         }
 
@@ -303,19 +276,6 @@ var CSS3DRenderer = function () {
         var fov = camera.projectionMatrix.elements[ 5 ] * _heightHalf;
 
         if ( cache.camera.fov !== fov ) {
-
-            if ( camera.isPerspectiveCamera ) {
-
-                domElement.style.WebkitPerspective = fov + 'px';
-                domElement.style.perspective = fov + 'px';
-
-            } else {
-
-                domElement.style.WebkitPerspective = '';
-                domElement.style.perspective = '';
-
-            }
-
             cache.camera.fov = fov;
 
         }
@@ -323,19 +283,7 @@ var CSS3DRenderer = function () {
         if ( scene.autoUpdate === true ) scene.updateMatrixWorld();
         if ( camera.parent === null ) camera.updateMatrixWorld();
 
-        if ( camera.isOrthographicCamera ) {
-
-            var tx = - ( camera.right + camera.left ) / 2;
-            var ty = ( camera.top + camera.bottom ) / 2;
-
-        }
-
-        var cameraCSSMatrix = camera.isOrthographicCamera ?
-            'scale(' + fov + ')' + 'translate(' + epsilon( tx ) + 'px,' + epsilon( ty ) + 'px)' + getCameraCSSMatrix( camera.matrixWorldInverse ) :
-            'translateZ(' + fov + 'px)' + getCameraCSSMatrix( camera.matrixWorldInverse );
-
-        var style = cameraCSSMatrix +
-            'translate(' + _widthHalf + 'px,' + _heightHalf + 'px)';
+        var style = 'translate(' + _widthHalf + 'px,' + _heightHalf + 'px)';
 
         if ( cache.camera.style !== style && ! isIE ) {
 
@@ -346,7 +294,7 @@ var CSS3DRenderer = function () {
 
         }
 
-        renderObject( scene, scene, camera, cameraCSSMatrix );
+        renderObject( scene, scene, camera, "translateZ(0)" );
 
         if ( isIE ) {
 
