@@ -21,8 +21,8 @@ var TrackballControls = function ( object, domElement ) {
 
     this.screen = { left: 0, top: 0, width: 0, height: 0 };
 
-    this.rotateSpeed = 1.0;
-    this.zoomSpeed = 1.2;
+    this.rotateSpeed = 0.4;
+    this.zoomSpeed = 10.2;
     this.panSpeed = 0.3;
 
     this.noRotate = false;

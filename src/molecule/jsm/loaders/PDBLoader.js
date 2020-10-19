@@ -18,11 +18,23 @@ PDBLoader.prototype = Object.assign( Object.create( Loader.prototype ), {
     load: function ( url, onLoad, onProgress, onError ) {
 
         var scope = this;
-        var text = `COMPND  bucky.pdb
-HETATM    1  C 38.8222 31.3221 0
-HETATM    2  C 29.4112 0 0
-CONECT    1    2
-END`
+// var text = `0,0,0
+// 2,2,2
+// 3,3,3
+// 4,4,4`
+//         var scope = this;
+var text = `-3.4306,0.3484,0.3630
+-3.1790,1.1810,-0.7334
+-2.9160,0.3690,-1.8427
+-3.0048,-0.9660,-1.4314
+-3.3229,-0.9791,-0.0682
+-3.2001,0.0093,-0.7425
+1,6
+2,6
+3,6
+4,6
+5,6
+6`
 //         var text = `COMPND  bucky.pdb
 // HETATM    1  C                 -3.4306  0.3484  0.3630
 // HETATM    2  C                 -3.1790  1.1810 -0.7334
@@ -76,15 +88,7 @@ END`
                     _bonds.push( [ satom - 1, eatom - 1, 1 ] );
                     _bhash[ h ] = _bonds.length - 1;
 
-                } else {
-
-                    // doesn't really work as almost all PDBs
-                    // have just normal bonds appearing multiple
-                    // times instead of being double/triple bonds
-                    // bonds[bhash[h]][2] += 1;
-
                 }
-
             }
 
         }
@@ -182,12 +186,18 @@ END`
 
         for ( var i = 0, l = lines.length; i < l; i ++ ) {
 
-            if ( lines[ i ].substr( 0, 4 ) === 'ATOM' || lines[ i ].substr( 0, 6 ) === 'HETATM' ) {
+            if (i < 6) {
 
-                x = parseFloat( lines[ i ].substr( 30, 7 ) );
-                y = parseFloat( lines[ i ].substr( 38, 7 ) );
-                z = parseFloat( lines[ i ].substr( 46, 7 ) );
-                index = parseInt( lines[ i ].substr( 6, 5 ) ) - 1;
+                // x = parseFloat( lines[ i ].substr( 30, 7 ) );
+                // y = parseFloat( lines[ i ].substr( 38, 7 ) );
+                // z = parseFloat( lines[ i ].substr( 46, 7 ) );
+                // index = parseInt( lines[ i ].substr( 6, 5 ) ) - 1;
+
+                let coordinates = lines[i].split(',');
+                x = parseFloat(coordinates[0]);
+                y = parseFloat(coordinates[1]);
+                z = parseFloat(coordinates[2]);
+                index = i;
 
                 e = trim( lines[ i ].substr( 76, 2 ) ).toLowerCase();
 
@@ -197,19 +207,28 @@ END`
 
                 }
 
-                var atomData = [ x, y, z, CPK[ e ], capitalize( e ) ];
+                var atomData = [ x, y, z, CPK[ "c" ], capitalize( "c" ) ];
 
                 atoms.push( atomData );
-                _atomMap[ index ] = atomData;
+                _atomMap[ i ] = atomData;
 
-            } else if ( lines[ i ].substr( 0, 6 ) === 'CONECT' ) {
+            } else {
+                let connects = lines[i].split(',');
+                let sAtom = connects[0];
+                let eAtom = connects[1];
 
-                var satom = parseInt( lines[ i ].substr( 6, 5 ) );
+                if (eAtom) {
 
-                parseBond( 11, 5 );
-                parseBond( 16, 5 );
-                parseBond( 21, 5 );
-                parseBond( 26, 5 );
+                    let h = hash(sAtom, eAtom);
+
+                    if (_bhash[h] === undefined) {
+
+                        _bonds.push([sAtom - 1, eAtom - 1, 1]);
+                        _bhash[h] = _bonds.length - 1;
+
+                    }
+                }
+
 
             }
 

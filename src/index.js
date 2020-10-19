@@ -2,12 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Cover from "./components/Cover.jsx";
 import {Vector3, PerspectiveCamera, Scene, Object3D, Color, Matrix4} from './molecule/build/three.module.js';
-import {TrackballControls} from './molecule/jsm/controls/TrackballControls.js';
 import {PDBLoader} from './molecule/jsm/loaders/PDBLoader.js';
 import {CSS3DRenderer, CSS3DObject, CSS3DSprite} from './molecule/jsm/renderers/CSS3DRenderer.js';
 
 var camera, scene, renderer;
-var controls;
 var root;
 
 var objects = [];
@@ -18,27 +16,6 @@ var tmpVec4 = new Vector3();
 var offset = new Vector3();
 
 var visualizationType = 2;
-
-var MOLECULES = {
-    "Ethanol": "ethanol.pdb",
-    "Aspirin": "aspirin.pdb",
-    "Caffeine": "caffeine.pdb",
-    "Nicotine": "nicotine.pdb",
-    "LSD": "lsd.pdb",
-    "Cocaine": "cocaine.pdb",
-    "Cholesterol": "cholesterol.pdb",
-    "Lycopene": "lycopene.pdb",
-    "Glucose": "glucose.pdb",
-    "Aluminium oxide": "Al2O3.pdb",
-    "Cubane": "cubane.pdb",
-    "Copper": "cu.pdb",
-    "Fluorite": "caf2.pdb",
-    "Salt": "nacl.pdb",
-    "YBCO superconductor": "ybco.pdb",
-    "Buckyball": "buckyball.pdb",
-    //"Diamond": "diamond.pdb",
-    "Graphite": "graphite.pdb"
-};
 
 ReactDOM.render(<Cover/>, document.getElementById("root"));
 
@@ -54,7 +31,6 @@ animate();
 function init() {
 
     camera = new PerspectiveCamera(0, 0, 0, 0);
-    camera.position.z = 22000;
 
     scene = new Scene();
 
@@ -66,11 +42,6 @@ function init() {
     renderer = new CSS3DRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('container').appendChild(renderer.domElement);
-
-    //
-
-    controls = new TrackballControls(camera, renderer.domElement);
-    controls.rotateSpeed = 1;
 
     loadMolecule("models/pdb/caffeine.pdb");
 
@@ -340,21 +311,7 @@ function loadMolecule(url) {
 
         }
 
-        //console.log( "CSS3DObjects:", objects.length );
-
-        switch (visualizationType) {
-
-            case 0:
-                showAtoms();
-                break;
-            case 1:
-                showBonds();
-                break;
-            case 2:
-                showAtomsBonds();
-                break;
-
-        }
+        showAtomsBonds();
 
     });
 
@@ -375,9 +332,9 @@ function onWindowResize() {
 function animate() {
 
     requestAnimationFrame(animate);
-    controls.update();
 
     time = time + 0.01;
+    // time = time + 0.01 * time;
 
     root.rotation.x = time;
     root.rotation.y = time * 0.7;
