@@ -73,7 +73,6 @@ var CSS3DRenderer = function () {
     };
 
     var domElement = document.createElement( 'div' );
-    domElement.style.overflow = 'hidden';
 
     this.domElement = domElement;
 
@@ -105,6 +104,7 @@ var CSS3DRenderer = function () {
 
         domElement.style.width = width + 'px';
         domElement.style.height = height + 'px';
+        domElement.style.margin = 'auto';
 
         cameraElement.style.width = width + 'px';
         cameraElement.style.height = height + 'px';
@@ -133,8 +133,8 @@ var CSS3DRenderer = function () {
             epsilon( elements[ 9 ] ) + ',' +
             epsilon( elements[ 10 ] ) + ',' +
             epsilon( elements[ 11 ] ) + ',' +
-            epsilon( elements[ 12 ] ) + ',' +
-            epsilon( elements[ 13 ] ) + ',' +
+            (epsilon( elements[ 12 ] ) + 150) + ',' +
+            (epsilon( elements[ 13 ] ) + 150) + ',' +
             epsilon( elements[ 14 ] ) + ',' +
             epsilon( elements[ 15 ] ) +
             ')';
@@ -186,7 +186,7 @@ var CSS3DRenderer = function () {
             if ( cachedObject === undefined || cachedObject.style !== style ) {
 
                 element.style.WebkitTransform = style;
-                element.style.transform = style;
+                // element.style.transform = style;
 
                 var objectData = { style: style };
 
@@ -287,9 +287,6 @@ var CSS3DRenderer = function () {
 
         if ( cache.camera.style !== style && ! isIE ) {
 
-            cameraElement.style.WebkitTransform = style;
-            cameraElement.style.transform = style;
-
             cache.camera.style = style;
 
         }
@@ -298,10 +295,6 @@ var CSS3DRenderer = function () {
 
         if ( isIE ) {
 
-            // IE10 and 11 does not support 'preserve-3d'.
-            // Thus, z-order in 3D will not work.
-            // We have to calc z-order manually and set CSS z-index for IE.
-            // FYI: z-index can't handle object intersection
             zOrder( scene );
 
         }

@@ -15,14 +15,9 @@ PDBLoader.prototype = Object.assign( Object.create( Loader.prototype ), {
 
     constructor: PDBLoader,
 
-    load: function ( url, onLoad, onProgress, onError ) {
+    load: function (onLoad, onProgress, onError ) {
 
         var scope = this;
-// var text = `0,0,0
-// 2,2,2
-// 3,3,3
-// 4,4,4`
-//         var scope = this;
 var text = `-3.4306,0.3484,0.3630
 -3.1790,1.1810,-0.7334
 -2.9160,0.3690,-1.8427
@@ -52,8 +47,6 @@ var text = `-3.4306,0.3484,0.3630
         onLoad( scope.parse( text ) );
 
     },
-
-    // Based on CanvasMol PDB parser
 
     parse: function ( text ) {
 

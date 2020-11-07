@@ -2,6 +2,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -12,7 +13,12 @@ module.exports = {
         filename: "[name].js"
     },
     optimization: {
-        minimize: false
+        minimizer: [
+            new UglifyJsPlugin({
+                test: /\.js(\?.*)?$/i,
+            }),
+        ],
+        minimize: true
     },
     module: {
         rules: [
