@@ -4,6 +4,11 @@ export default class Products extends Component {
 
     constructor(props) {
         super(props);
+        this.productSection = React.createRef();
+    }
+
+    getRef() {
+        return this.productSection;
     }
 
     render() {
@@ -34,7 +39,7 @@ export default class Products extends Component {
             );
         }
         return (
-            <section id="products" className="section--main" style={{width: `50%`, height: '100%', float: 'left'}}>
+            <section id="products" className="section--products section" ref={this.productSection}>
                 <div style={{height: '8rem'}}/>
                 <div className="container-fluid">
                     <div className="d-flex justify-content-center bd-highlight">

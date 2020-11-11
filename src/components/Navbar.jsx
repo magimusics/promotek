@@ -16,7 +16,7 @@ export default class Navbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark static-top" style={{position: 'fixed', width: '100%', zIndex: '2'}}>
+            <nav className="navbar navbar-expand-lg navbar-dark static-top" style={{position: 'fixed', zIndex: '2', width: '100%'}}>
                 <div className="container-fluid m-container-header">
                     <a className="navbar-brand" href="#">
                         <h1 className="d-inline-block h-100 text-primary">ПРОМО</h1>

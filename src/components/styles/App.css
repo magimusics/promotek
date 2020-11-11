@@ -194,18 +194,22 @@ body {
     color: #FFFFFF;
     background-size: cover;
     font-family: 'Montserrat', sans-serif;
-    /*font-family: 'Roboto Condensed', sans-serif;*/
     overflow: hidden;
 }
 .section--main {
     background-size: cover;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url("../../images/background.jpg");
-    /*letter-spacing: 5px;*/
     background-color: transparent
 }
 .section--products {
     background-size: cover;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url("../../images/background.jpg");
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url("../../images/background2.jpg");
+    background-color: transparent
+}
+.section--contacts {
+    background-size: cover;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url("../../images/background3.jpg");
+    background-color: transparent
 }
 .product-container {
     height: 300px;
@@ -213,6 +217,20 @@ body {
 .product-title {
     text-align: center;
     letter-spacing: normal;
+}
+.wrapper .active-section {
+    opacity: 1;
+    z-index: 1;
+}
+.section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    -webkit-transition: all 700ms ease;
+    transition: all 700ms ease;
+    width: 100%;
+    height: 100%;
 }
 .white-background {
     background: rgba(255, 255, 255, 0.1);
@@ -265,4 +283,14 @@ body {
 }
 .carousel-control-next, .carousel-control-prev {
     width: 2%;
+}
+.main-line::after {
+    content: "";
+    height: 0.8rem;
+    background: var(--blue);
+    display: block;
+    animation: pulse-ring 1.7s cubic-bezier(0.6, 0.61, 0.355, 1) infinite;
+}
+div ymaps {
+    color: #000000;
 }
