@@ -5,18 +5,22 @@ export default class Navbar extends Component {
     constructor(props) {
         super(props);
         this.buttonList = ['Главная', 'Продукция', 'Галерея', 'Отзывы', 'Дилерам', 'Контакты']
-        this.buttons = this.buttonList.map((b, index) => {
-            return (
-                <li className="nav-item active px-2" key={index}>
-                    <button className="btn btn-outline-primary">{b}</button>
-                </li>
-            )
-        });
+    }
+
+    switch(number) {
+        this.props.switchSection(number);
     }
 
     render() {
+        let buttons = this.buttonList.map((b, index) => {
+            return (
+                <li className="nav-item active px-2" key={index}>
+                    <button className="btn btn-outline-primary" onClick={event => this.switch(index)}>{b}</button>
+                </li>
+            )
+        });
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark static-top" style={{position: 'fixed', zIndex: '2', width: '100%'}}>
+            <nav className="navbar navbar-expand-lg navbar-dark static-top" style={{zIndex: '2'}}>
                 <div className="container-fluid m-container-header">
                     <a className="navbar-brand" href="#">
                         <h1 className="d-inline-block h-100 text-primary">ПРОМО</h1>
@@ -29,7 +33,7 @@ export default class Navbar extends Component {
                     </button>
                     <div className="collapse navbar-collapse flex-column ml-lg-0 ml-3" id="navbarResponsive">
                         <ul className="navbar-nav ml-auto py-3">
-                            {this.buttons}
+                            {buttons}
                         </ul>
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">

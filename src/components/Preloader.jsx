@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './styles/App.css';
+import './styles/App.scss';
 import {Vector3, PerspectiveCamera, Scene, Object3D, Color, Matrix4} from '../molecule/build/three.module.js';
 import {PDBLoader} from '../molecule/jsm/loaders/PDBLoader.js';
 import {CSS3DRenderer, CSS3DObject, CSS3DSprite} from '../molecule/jsm/renderers/CSS3DRenderer.js';

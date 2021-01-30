@@ -1,4 +1,37 @@
 import React, {Component} from "react";
+const category = [
+    {
+        name: 'Емкости',
+        sub: ['Накопительные', 'Пожарные', 'Топливные', 'Химстойкие', 'Для питьевой воды']
+    },
+    {
+        name: 'Ливневые очистные сооружения',
+        sub: ['Комплексные системы очистки', 'Пескоотделители', 'Маслобензоотделители', 'Сорбционные блоки', 'Блоки УФО']
+    },
+    {
+        name: 'Жироотделители'
+    },
+    {
+        name: 'Насосные станции',
+        sub: ['Канализационные насосные станции (КНС)', 'Станции пожаротушения', 'Станции повышения давления']
+    },
+    {
+        name: 'Канализация для частного дома',
+        sub: ['Септики', 'Станции биологической очистки', 'Биофильтры']
+    },
+    {
+        name: 'Колодцы'
+    },
+    {
+        name: 'Крупные хозбытовые очистные сооружения'
+    },
+    {
+        name: 'Очистные сооружения промышленных стоков'
+    },
+    {
+        name: 'Водоподготовка'
+    },
+]
 
 export default class Products extends Component {
 
@@ -16,57 +49,61 @@ export default class Products extends Component {
         let secondRow = [];
         for (let i = 0; i < 4; i++) {
             firstRow.push(
-                <div className="card mx-4 mb-2" key={i}>
-                    <img className="card-img-top" alt="Товар" src="http://promo-tek.ru/images/PromoTek/OJ%20goriz.jpg"
-                         data-holder-rendered="true" style={{height: '160px', width: '100%', display: 'block'}}/>
+                <div className="col-lg-3 col-sm-12" key={i}>
+                    <div className="card mx-4 mb-2 bg-transparent">
+                        <img className="card-img-top" alt="Товар" src="http://promo-tek.ru/images/PromoTek/OJ%20goriz.jpg"
+                             data-holder-rendered="true" style={{height: '160px', width: '100%', display: 'block'}}/>
                         <div className="card-body p-2">
                             <p className="card-text m-0">Небольшое описание товара.</p>
                             <small className="text-muted">Дополнительная информация.</small>
                         </div>
+                    </div>
                 </div>
             );
         }
         for (let i = 0; i < 3; i++) {
             secondRow.push(
-                <div className="card mx-5 px-3" key={i}>
-                    <img className="card-img-top" alt="Товар" src="http://promo-tek.ru/images/PromoTek/OJ%20goriz.jpg"
-                         data-holder-rendered="true" style={{height: '160px', width: '100%', display: 'block'}}/>
+                <div className="col-lg-4 col-sm-12" key={i}>
+                    <div className="card mx-5 px-3 bg-transparent">
+                        <img className="card-img-top" alt="Товар" src="http://promo-tek.ru/images/PromoTek/OJ%20goriz.jpg"
+                             data-holder-rendered="true" style={{height: '160px', width: '100%', display: 'block'}}/>
                         <div className="card-body p-2">
                             <p className="card-text m-0">Небольшое описание товара.</p>
                             <small className="text-muted">Дополнительная информация.</small>
                         </div>
+                    </div>
                 </div>
             );
         }
         return (
             <section id="products" className="section--products section" ref={this.productSection}>
                 <div style={{height: '8rem'}}/>
-                <div className="container-fluid">
-                    <div className="d-flex justify-content-center bd-highlight">
+                <div className="container">
+                    <div className="d-flex justify-content-center bd-highlight row">
                         <div className="p-1 bd-highlight logo-menu product-button-wrapper">
-                            <button className="btn btn-outline-primary btn-lg btn-block product-button white-background">
+                            <button className="btn btn-outline-primary btn-lg product-button white-background">
                                 <span className="product-button-text">Комплексные системы очистки</span>
                             </button>
                         </div>
                         <div className="p-1 bd-highlight logo-menu product-button-wrapper">
-                            <button className="btn btn-outline-primary btn-lg btn-block product-button white-background">
+                            <button className="btn btn-outline-primary btn-lg product-button white-background">
                                 <span className="product-button-text">Емкостное оборудование</span>
                             </button>
                         </div>
                         <div className="p-1 bd-highlight logo-menu product-button-wrapper">
-                            <button className="btn btn-outline-primary btn-lg btn-block product-button white-background">
+                            <button className="btn btn-outline-primary btn-lg product-button white-background">
                                 <span className="product-button-text">Очистные сооружения</span>
                             </button>
                         </div>
                     </div>
-                    <div className="d-flex justify-content-center bd-highlight">
+                    <div className="d-flex justify-content-center bd-highlight row">
                         <div className="p-1 bd-highlight logo-menu product-button-wrapper">
-                            <button className="btn btn-outline-primary btn-lg btn-block product-button white-background">
+                            <button className="btn btn-outline-primary btn-lg product-button white-background">
                                 <span className="product-button-text">Насосные станции</span>
                             </button>
                         </div>
                         <div className="p-1 bd-highlight logo-menu product-button-wrapper">
-                            <button className="btn btn-outline-primary btn-lg btn-block product-button white-background">
+                            <button className="btn btn-outline-primary btn-lg product-button white-background">
                                 <span className="product-button-text">Химстойское оборудование</span>
                             </button>
                         </div>
@@ -82,10 +119,10 @@ export default class Products extends Component {
                                             <span>Какая-то надпись</span>
                                         </div>
                                     </div>
-                                    <div className="card-group px-4">
+                                    <div className="row">
                                         {firstRow}
                                     </div>
-                                    <div className="card-group px-5">
+                                    <div className="row">
                                         {secondRow}
                                     </div>
                                 </div>

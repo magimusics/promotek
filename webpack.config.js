@@ -28,8 +28,17 @@ module.exports = {
                 use: ["babel-loader"]
             },
             {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                test: require.resolve('./src/components/styles/App.scss'),
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
+                        loader: 'sass-loader'
+                    }],
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
@@ -44,8 +53,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/index.html"
         }),
-        new MiniCssExtractPlugin({
-            filename: "[name].css"
-        })
+        new MiniCssExtractPlugin({filename: 'app.css'})
     ]
 };

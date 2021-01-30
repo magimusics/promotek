@@ -2,7 +2,18 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:200,200,400,500,700);
 /*@import url(https://fonts.googleapis.com/css?family=Roboto:200,200,400,500,700);*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap');
-@import '~bootstrap/dist/css/bootstrap.min.css';
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1170px,
+        xxl: 1320px
+);
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+#map > ymaps {
+    border-radius: 5px;
+    overflow: hidden;
+}
 .bond {
     width: 5px;
     height: 10px;
@@ -74,6 +85,9 @@ html, body {
 @media (max-width: 480px) {
     :root {
         font-size: 12px;
+    }
+    .catalog-container {
+        width: 28rem !important;
     }
 }
 .middle-text {
@@ -221,14 +235,16 @@ body {
 .wrapper .active-section {
     opacity: 1;
     z-index: 1;
+    //display: block;
+    -webkit-transition: all 700ms ease;
+    transition: all 700ms ease;
 }
 .section {
     position: absolute;
     left: 0;
     top: 0;
     opacity: 0;
-    -webkit-transition: all 700ms ease;
-    transition: all 700ms ease;
+    //display: none;
     width: 100%;
     height: 100%;
 }
@@ -273,9 +289,6 @@ body {
 .catalog-container {
     width: 80rem;
     height: 100%;
-    /*background: rgba(255, 255, 255, 0.4);*/
-    /*box-shadow: inset 0px 0px 2px 1px #000000;*/
-    /*border-radius: 12px;*/
     border: 1px solid #2C558F;
     box-sizing: border-box;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));

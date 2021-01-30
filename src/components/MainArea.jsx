@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import Preloader from './Preloader.jsx';
 import App from './App.jsx';
-import './styles/App.css';
+import './styles/App.scss';
 
 export default function mainArea() {
 
@@ -34,9 +34,7 @@ function fetchApplication() {
     return new Promise(resolve => {
         setTimeout(() => {
             console.log("fetched user");
-            resolve({
-                app: <App/>
-            });
+            resolve({app: <App/>});
         }, 500);
     })
 }
